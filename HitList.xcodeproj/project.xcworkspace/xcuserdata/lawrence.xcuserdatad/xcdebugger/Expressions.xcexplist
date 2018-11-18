@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "DetailViewController.init(coder:):DetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "NameLabel">
+            </PersistentString>
+            <PersistentString
+               value = "item">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DevicesViewController.viewDidLoad():DevicesViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "devices.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PeopleViewController.viewDidLoad():PeopleViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+            <PersistentString
+               value = "people.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.initializeData():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fetchedDevices.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DeviceDetailTableViewController.tableView(_:didSelectRowAt:):DeviceDetailTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.section">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DevicesViewController.prepare(for:sender:):DevicesViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "selectedItem.deviceType">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PeopleTableViewController.reloadData():PeopleViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "people.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PeopleTableViewController.viewDidLoad():PeopleViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "coreDataStack">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DevicesTableViewController.tableView(_:cellForRowAt:):DevicesViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "device.deviceType">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DevicesWithFetchRequestController.reloadData(predicate:):DevicesWithFetchRequestController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedPerson">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DeviceDetailTableViewController.viewWillDisappear(_:):DeviceDetailTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "managedObjectContext">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
