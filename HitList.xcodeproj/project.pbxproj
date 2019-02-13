@@ -154,10 +154,10 @@
 		212FA5C8218B9EC3005523B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2125EF66219A7D0500ADA6AE /* Person+CoreDataProperties.swift */,
-				2125EF67219A7D0500ADA6AE /* Device+CoreDataProperties.swift */,
 				2125EF5A219A7A5A00ADA6AE /* Device+CoreDataClass.swift */,
+				2125EF67219A7D0500ADA6AE /* Device+CoreDataProperties.swift */,
 				2125EF5C219A7A5A00ADA6AE /* Person+CoreDataClass.swift */,
+				2125EF66219A7D0500ADA6AE /* Person+CoreDataProperties.swift */,
 				2121C6922180E429005A5737 /* DataModel.xcdatamodeld */,
 			);
 			path = Model;

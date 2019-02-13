@@ -24,26 +24,6 @@ class PeopleTableViewController: UITableViewController {
     weak var personPickerDelegate: PersonPickerDelegate?
     var selectedPerson: Person?
     
-    fileprivate func reloadData() {
-        //        coreDataStack = CoreDataStack(completionClosure: {
-        //        })
-        //2
-        let fetchRequest =
-            NSFetchRequest<NSManagedObject>(entityName: "Person")
-        
-        //3
-        do {
-            people = try managedObjectContext.fetch(fetchRequest) as! [Person]
-            if (people.count == 0){
-//                self.initializeData()
-            }
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        
-        tableView.reloadData()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         managedObjectContext = coreDataStack.managedObjectContext
@@ -56,6 +36,26 @@ class PeopleTableViewController: UITableViewController {
         reloadData()
     }
 
+    fileprivate func reloadData() {
+        //        coreDataStack = CoreDataStack(completionClosure: {
+        //        })
+        //2
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "Person")
+        
+        //3
+        do {
+            people = try managedObjectContext.fetch(fetchRequest) as! [Person]
+            if (people.count == 0){
+                //                self.initializeData()
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        tableView.reloadData()
+    }
+    
     fileprivate func initializeData() {
         // Override point for customization after application launch.
         let devicesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Device")

@@ -58,15 +58,15 @@ class CoreDataStack: NSObject {
     }
     
     private lazy var saveManagedObjectContext: NSManagedObjectContext = {
-        let managedManagedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
-        managedManagedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator
-        return managedManagedObjectContext
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator
+        return managedObjectContext
     }()
     
     lazy var managedObjectContext: NSManagedObjectContext = {
-        let managedManagedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
-        managedManagedObjectContext.parent = self.saveManagedObjectContext
-        return managedManagedObjectContext
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
+        managedObjectContext.parent = self.saveManagedObjectContext
+        return managedObjectContext
     }()
 
     
