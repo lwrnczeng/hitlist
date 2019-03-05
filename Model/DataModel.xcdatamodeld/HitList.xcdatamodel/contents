@@ -9,10 +9,10 @@
     </entity>
     <entity name="Person" representedClassName="Person" syncable="YES">
         <attribute name="name" attributeType="String" minValueString="2" syncable="YES"/>
-        <relationship name="devices" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Device" inverseName="owner" inverseEntity="Device" syncable="YES"/>
+        <relationship name="devices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Device" inverseName="owner" inverseEntity="Device" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Device" positionX="-572.8515625" positionY="-96.5390625" width="128" height="120"/>
-        <element name="Person" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="Device" positionX="-706.06640625" positionY="-25.13671875" width="128" height="120"/>
+        <element name="Person" positionX="-141.140625" positionY="16.72265625" width="128" height="75"/>
     </elements>
 </model>
