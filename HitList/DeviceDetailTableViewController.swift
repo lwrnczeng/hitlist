@@ -64,7 +64,7 @@ class DeviceDetailTableViewController: UITableViewController {
             }
         
         let startTime = CFAbsoluteTimeGetCurrent()
-        coreDataStack?.saveContext()
+        coreDataStack?.saveMainContext()
         let endTime = CFAbsoluteTimeGetCurrent()
         let elapsedTime = (endTime - startTime) * 1000
         print("saving the context took \(elapsedTime) ms")
@@ -77,6 +77,6 @@ extension DeviceDetailTableViewController:PersonPickerDelegate {
     func didSelectPerson(person: Person) {
         device?.owner = person
         DeviceOwnerName.text = device?.owner?.name
-        coreDataStack?.saveContext()
+        coreDataStack?.saveMainContext()
     }
 }

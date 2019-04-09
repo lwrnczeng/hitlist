@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "closure #2 in CoreDataStack.saveMainContext():CoreDataStack.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "saveManagedObjectContext.hasChanges">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CoreDataStack.saveContext():CoreDataStack.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "saveManagedObjectContext.hasChanges">
+            </PersistentString>
+            <PersistentString
+               value = "managedObjectContext.hasChanges">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CoreDataStack.saveMainContext():CoreDataStack.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "saveManagedObjectContext.hasChanges">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

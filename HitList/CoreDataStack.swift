@@ -12,7 +12,7 @@ import CoreData
 class CoreDataStack: NSObject {
     
     let persistentStoreCoordinator : NSPersistentStoreCoordinator?
-
+    
     override init() {  //completionClosure: @escaping () -> ()
         let modelName = "DataModel";
         //This resource is the same name as your xcdatamodeld contained in your project
@@ -26,48 +26,69 @@ class CoreDataStack: NSObject {
         
         self.persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: mom)
         
-//        managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
-//        managedObjectContext?.persistentStoreCoordinator = persistentStoreCoordinator
+        //        managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
+        //        managedObjectContext?.persistentStoreCoordinator = persistentStoreCoordinator
         
-//        let queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background)
-//        queue.async {
-            guard let docURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
-                fatalError("Unable to resolve document directory")
-            }
-            let storeURL = docURL.appendingPathComponent("\(modelName).sqlite")
-            do {
-                try self.persistentStoreCoordinator?.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: [NSMigratePersistentStoresAutomaticallyOption:true, NSInferMappingModelAutomaticallyOption:true])
-                //The callback block is expected to complete the User Interface and therefore should be presented back on the main queue so that the user interface does not need to be concerned with which queue this call is coming from.
-//                DispatchQueue.main.sync(execute: completionClosure)
-            } catch {
-                fatalError("Error migrating store: \(error)")
-            }
-//        }   
+        //        let queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background)
+        //        queue.async {
+        guard let docURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
+            fatalError("Unable to resolve document directory")
+        }
+        let storeURL = docURL.appendingPathComponent("\(modelName).sqlite")
+        do {
+            try self.persistentStoreCoordinator?.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: [NSMigratePersistentStoresAutomaticallyOption:true, NSInferMappingModelAutomaticallyOption:true])
+            //The callback block is expected to complete the User Interface and therefore should be presented back on the main queue so that the user interface does not need to be concerned with which queue this call is coming from.
+            //                DispatchQueue.main.sync(execute: completionClosure)
+        } catch {
+            fatalError("Error migrating store: \(error)")
+        }
+        //        }
     }
     
     
-    func saveContext () {
-        if self.saveManagedObjectContext.hasChanges {
-            do {
-                try saveManagedObjectContext.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+    func saveMainContext () {
+        
+        guard managedObjectContext.hasChanges || saveManagedObjectContext.hasChanges else {
+            return
+        }
+        
+        managedObjectContext.performAndWait {
+            if self.managedObjectContext.hasChanges {
+                do {
+                    try self.managedObjectContext.save()
+                } catch {
+                    let nserror = error as NSError
+                    //todo: handle errors, may show a message
+                    print(("Unresolved error \(nserror), \(nserror.userInfo)"))
+                    //                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                }
             }
         }
+        
+        saveManagedObjectContext.perform {
+            if self.saveManagedObjectContext.hasChanges {
+                do {
+                    try self.saveManagedObjectContext.save()
+                } catch {
+                    let nserror = error as NSError
+                    print(("Unresolved error \(nserror), \(nserror.userInfo)"))
+                }
+            }
+        }
+        
     }
     
     private lazy var saveManagedObjectContext: NSManagedObjectContext = {
-        let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
-        managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator
-        return managedObjectContext
+        let moc = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
+        moc.persistentStoreCoordinator = self.persistentStoreCoordinator
+        return moc
     }()
     
     lazy var managedObjectContext: NSManagedObjectContext = {
-        let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
+        let managedObjectContext = NSManagedObjectContext(concurrencyType:.mainQueueConcurrencyType)
         managedObjectContext.parent = self.saveManagedObjectContext
         return managedObjectContext
     }()
-
+    
     
 }

@@ -155,14 +155,15 @@ class PeopleTableViewController: UITableViewController {
         //1
 //        let managedContext = coreDataStack.managedObjectContext
         //2
-        let entity = NSEntityDescription.entity(forEntityName: "Person", in: managedObjectContext)!
-        let person = NSManagedObject(entity: entity, insertInto: managedObjectContext) as! Person
+//        let entity = NSEntityDescription.entity(forEntityName: "Person", in: managedObjectContext)!
+//        let person = NSManagedObject(entity: entity, insertInto: managedObjectContext) as! Person
+        let person = Person(context: managedObjectContext)
         //3
         //person.setValue(name, forKeyPath: "name")
         person.name = name
         //4
         do {
-            try managedObjectContext.save()
+            try coreDataStack.saveMainContext()
             people.append(person)
         } catch let error as NSError {
             print("Could not save it. \(error), \(error.userInfo)")
